@@ -47,7 +47,7 @@ const ResumeWorkSpan = styled.span`
         margin-top: 5px;
     }
     p{
-        margin-top:5px;
+    margin-top:5px;
     color:rgb(75,82,104);
     font-size:23px;
     font-weight:bold;
@@ -124,9 +124,6 @@ const ResumeWorkBottom = styled.span`
         margin-right:3px;
     }
 `;
-
-
-
 
 export const ResumeWork: FC = () => {
     const { postList } = useSelector<IState, IPostReducer>(state => ({
