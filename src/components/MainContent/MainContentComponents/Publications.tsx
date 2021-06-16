@@ -1,10 +1,15 @@
 import { FC } from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../reducers';
+import { IPostReducer } from '../../../reducers/postsReducers';
+import { ICommentReducer } from '../../../reducers/commentsReducers';
+import { IUsersReducer } from '../../../reducers/usersReducers';
 
 const PublicationsContent = styled.div`
     display:flex;
     width:100%;
-    height:300px;
+    height:320px;
     background-color:white;
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
     border-radius:7px;
@@ -85,18 +90,21 @@ const RightPublicationsBottom = styled.h1`
 
 
 export const Publications: FC = () => {
+
+    const { postList } = useSelector<IState, IPostReducer>(state => ({
+        ...state.posts
+    }));
+    const { usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
+
+    if (usersList?.length > 0) {
     return(
         <PublicationsContent>
         <PhotoLeft>
             <PhotoLeftText>
-                <p className="PublicationsText">
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit ... and
-                    one more line for the demo, why not
-                </p>
-                <p className="Descrition">
-                    10.05.2021 <img className="myProfileImg" src="../../media/icons/myprofile.jpg" alt=""></img> Bartłomiej Kocik
-                </p>
+                <p className="PublicationsText">{postList[0].body}</p>
+                <p className="Descrition">10.05.2021<img className="myProfileImg" src="../../media/icons/myprofile.jpg" alt=""></img>{usersList[0].name}</p>
             </PhotoLeftText>
         </PhotoLeft>
         <RightPublications>
@@ -104,30 +112,15 @@ export const Publications: FC = () => {
                 <RightPublicationsTitle>Latest Publications</RightPublicationsTitle>
                 <RightPublicationsMini>
                     <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit ... and
-                        one more line for the demo, why not?
-                        <p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img> Bartłomiej Kocik</p>
-                    </p>
+                    <p>{postList[0].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[0].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsMini>
                     <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit ... and
-                        one more line for the demo, why not?
-                        <p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img> Bartłomiej Kocik</p>
-                    </p>
+                    <p>{postList[1].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[1].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsMini>
                     <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>
-                        Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit ... and
-                        one more line for the demo, why not?
-                        <p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img> Bartłomiej Kocik</p>
-                    </p>
+                    <p>{postList[2].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[2].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsBottom>
                     See more publications
@@ -135,4 +128,7 @@ export const Publications: FC = () => {
             </RightPublicationsContent>
         </RightPublications>
         </PublicationsContent>
-    )};
+    )}else{
+        return <></>
+    }
+};

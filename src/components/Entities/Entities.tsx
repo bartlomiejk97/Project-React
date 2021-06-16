@@ -1,23 +1,22 @@
 import { FC } from 'react';
 import styled from 'styled-components';
+import { EntitiesTopOne } from './EntitiesTopOne';
+import { EntitiesContent } from './EntitiesContent';
 
-const EntitiesContent = styled.div`
-    width:70%;
-    margin-left:150px;
-    display:inline-block;
-    border:1px solid red;
-    background-color:white;
-    min-height:100vh;
-`;
-const EntitiesTop = styled.div`
+
+const EntitiesContainer = styled.div`
     width:100%;
-    background-color:lightgreen;
-    height:100px;
+    margin-left:150px;
+    background-color:white;
 `;
+
 
 export const Entities: FC = () => {
-    return(
-        <EntitiesContent>
-            <EntitiesTop></EntitiesTop>
-        </EntitiesContent>
-)};
+    return (
+            <EntitiesContainer>
+                <EntitiesTopOne/>
+                <EntitiesContent/>
+            </EntitiesContainer>
+        )
+   
+};

@@ -3,10 +3,12 @@ import * as actionTypes from '../actions/actionTypes/postTypes';
 
 export interface IPostReducer {
     postList: ISinglePost[];
+    listType : string;
 }
 
 const defaultState = () : IPostReducer => ({
     postList: [],
+    listType:'Mosaic'
 });
 
 export default (state = defaultState(), action : any)=>{
@@ -16,6 +18,12 @@ export default (state = defaultState(), action : any)=>{
             return{
                 ...state,
                 postList:postData.postList
+            }
+        }
+        case "SET_LIST_TYPE" : {
+            return {
+                ...state,
+                listType:action.payload
             }
         }
         default:{

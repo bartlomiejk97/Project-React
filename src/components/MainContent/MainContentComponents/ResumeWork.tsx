@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../../reducers';
@@ -129,16 +129,24 @@ export const ResumeWork: FC = () => {
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
     }));
+
     const [currentPage , setCurrentPage ] = useState<number>(0);
     const handlePageClick  = (data:any) => {
         const selected = data.selected;
         setCurrentPage(selected);
     }
+
+    const [inputText, setInputText] = useState<string>('');
+
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.target.value;
+        setInputText(text);
+    }
     return (
         <ResumeWorkContainer>
             <ResumeWorkSpan>
                 <p>Resume your work</p>
-                <ResumeWorkFilterInput type="text" placeholder="Filter by title..." />
+                <ResumeWorkFilterInput type="text"value={inputText} onChange={inputHandler} placeholder="Filter by title..." />
                 <img src="../../media/icons/search.png" alt="" />
                 <SelectWrapper>
                     <img src="../../media/icons/follfowed.png" alt="" />
@@ -158,6 +166,7 @@ export const ResumeWork: FC = () => {
                         </ResumeWorkBottom>
                     </ResumeWorkMini>
                 ))
+
             }
             <ReactPaginate
                 previousLabel={'PREVIOUS'}
