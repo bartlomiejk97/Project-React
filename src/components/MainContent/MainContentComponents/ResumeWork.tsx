@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { IState } from '../../../reducers';
 import { IPostReducer } from '../../../reducers/postsReducers';
 import ReactPaginate from 'react-paginate';
-
+import { useEffect } from 'react';
+import { ISinglePost } from '../../../interfaces/ISinglePost';
 
 const ResumeWorkContainer = styled.div`
     width:100%;
@@ -126,27 +127,43 @@ const ResumeWorkBottom = styled.span`
 `;
 
 export const ResumeWork: FC = () => {
+    const [inputText, setInputText] = useState<string>('');
+    const inputFilter = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.currentTarget.value;
+        setInputText(text);
+    }
+    
+    const [ localPosts, setLocalPosts] = useState<ISinglePost[]>([]);
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
     }));
+    useEffect(() => {
+        console.log(inputText);
+        if(inputText === ""){
+            setLocalPosts(
+             postList
+            )
+        }else{
+            setLocalPosts(
+                postList.filter((post: any)=>{
+                    return post.title.toLowerCase().includes(inputText.toLowerCase())
+                })
+            )  
+        }
+    },[inputText,postList])
+
 
     const [currentPage , setCurrentPage ] = useState<number>(0);
     const handlePageClick  = (data:any) => {
         const selected = data.selected;
         setCurrentPage(selected);
     }
-
-    const [inputText, setInputText] = useState<string>('');
-
-    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const text = e.target.value;
-        setInputText(text);
-    }
+    
     return (
         <ResumeWorkContainer>
             <ResumeWorkSpan>
                 <p>Resume your work</p>
-                <ResumeWorkFilterInput type="text"value={inputText} onChange={inputHandler} placeholder="Filter by title..." />
+                <ResumeWorkFilterInput type='text' value={inputText} onChange={inputFilter} placeholder="Filter by title..." />
                 <img src="../../media/icons/search.png" alt="" />
                 <SelectWrapper>
                     <img src="../../media/icons/follfowed.png" alt="" />
@@ -155,9 +172,9 @@ export const ResumeWork: FC = () => {
                     </select>
                 </SelectWrapper>
             </ResumeWorkSpan>
-
             {
-                postList.slice(currentPage, currentPage +10).map((post) => (
+               
+                localPosts.slice(currentPage, currentPage +10).map((post) => (
                     <ResumeWorkMini key={post.id}>
                         <ResumeWorkTitle>{post.title}</ResumeWorkTitle>
                         <ResumeWorkText>{post.body}</ResumeWorkText>
@@ -166,7 +183,7 @@ export const ResumeWork: FC = () => {
                         </ResumeWorkBottom>
                     </ResumeWorkMini>
                 ))
-
+                
             }
             <ReactPaginate
                 previousLabel={'PREVIOUS'}
@@ -181,8 +198,7 @@ export const ResumeWork: FC = () => {
                 activeClassName={'active'}
                 pageClassName={'page'}
                 previousClassName={'previous'}
-                nextClassName={'next'}       
-            />
+                nextClassName={'next'}/>
         </ResumeWorkContainer>
     )
 };

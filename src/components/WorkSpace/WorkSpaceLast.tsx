@@ -1,10 +1,11 @@
-import { FC, useState } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reducers';
 import { IPostReducer } from '../../reducers/postsReducers';
 import ReactPaginate from 'react-paginate';
-
+import { useEffect } from 'react';
+import { ISinglePost } from '../../interfaces/ISinglePost';
 const WorkLast = styled.div`
     width:100%;
     margin:auto;
@@ -168,22 +169,42 @@ const ResumeWorkBottom = styled.span`
 
 
 export const WorkSpaceLast: FC = () => {
+///// działą filtrowanie 
 
+    const [inputText, setInputText] = useState<string>('');
+    const inputFilter = (e: ChangeEvent<HTMLInputElement>) => {
+        const text = e.currentTarget.value;
+        setInputText(text);
+    }
+    const[ localPosts, setLocalPosts] = useState<ISinglePost[]>([]);
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
     }));
-
+    useEffect(() => {
+        console.log(inputText);
+        if(inputText === ""){
+            setLocalPosts(
+               postList
+            )
+        }else{
+            setLocalPosts(
+                postList.filter((post: any)=>{
+                    return post.title.toLowerCase().includes(inputText.toLowerCase())
+                })
+            )  
+        }
+    },[inputText,postList])
     const [currentPage , setCurrentPage ] = useState<number>(0);
     const handlePageClick  = (data:any) => {
         const selected = data.selected;
         setCurrentPage(selected);
     }
-
+    
     return (
         <WorkLast>
             <LastUpadates>
                 <LastUpdatesTitle>Latest updates</LastUpdatesTitle>
-                <LastInput placeholder="Filter by title..." />
+                <LastInput placeholder="Filter by title..." value={inputText} onChange={inputFilter}/>
                 <LastSelected></LastSelected>
             </LastUpadates>
             <LastButtonContainer>
@@ -197,8 +218,9 @@ export const WorkSpaceLast: FC = () => {
                 <ButtonSmall>...</ButtonSmall>
             </LastButtonContainer>
             <LastUpdatesContainer>
+                
             {
-                postList.slice(currentPage, currentPage +9).map((post) => (
+                localPosts.slice(currentPage, currentPage +9).map((post) => (
                     <ResumeWorkMini key={post.id}>
                         <ResumeWorkTitle>{post.title}</ResumeWorkTitle>
                         <ResumeWorkText>{post.body}</ResumeWorkText>

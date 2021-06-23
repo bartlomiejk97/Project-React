@@ -1,3 +1,4 @@
+
 export const Colors = {
     white: '#FFF',
     black: '#000',
@@ -6,5 +7,6 @@ export const Colors = {
     border: '#f5f7f9',
     namesurname: '#4d5ead',
     leftmenufontcolor: '#4b5268',
-    grey: '#666666'
+    grey: '#666666',
+  
 }

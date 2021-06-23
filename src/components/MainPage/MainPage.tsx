@@ -58,7 +58,7 @@ const MainPage: FC = () => {
                             <MainWorkSpace />
                         </Route>
                         <Route path="/Profile">
-                            <Profile />
+                            <Profile/>
                         </Route>
                         <Route path="/Entities">
                             <Entities />

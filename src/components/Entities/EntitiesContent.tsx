@@ -7,7 +7,7 @@ import { IPostReducer } from '../../reducers/postsReducers';
 import { useSelector, useStore } from 'react-redux';
 import { ISinglePhotoReducer } from '../../reducers/photoReducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
-import { randomBytes } from 'crypto';
+
 
 
 const EntitiesContentContainer = styled.div`
@@ -77,13 +77,12 @@ export const EntitiesContent: FC = () => {
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
-    // <TitleEntities>{postList.Math.random()*100}</TitleEntities>
     if (usersList?.length > 0) {
         return (
             <EntitiesContentContainer>
                 <EntitiesContainerMosaic className={posts.listType}>
                     {
-                        postList.map((post) => (
+                        postList.slice(0,30).map((post) => (
                             <MainEntities className='item'>
                                 <MiniEntities>
                                     <ImgMiniEntities src={photoList[1]?.url} alt="api-image" />
