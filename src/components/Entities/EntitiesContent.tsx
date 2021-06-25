@@ -82,13 +82,13 @@ export const EntitiesContent: FC = () => {
             <EntitiesContentContainer>
                 <EntitiesContainerMosaic className={posts.listType}>
                     {
-                        postList.slice(0,30).map((post) => (
+                        postList.slice(0,32).map(( post :any ) => (
                             <MainEntities className='item'>
                                 <MiniEntities>
-                                    <ImgMiniEntities src={photoList[1]?.url} alt="api-image" />
+                                    <ImgMiniEntities src={photoList[0]?.url} alt="api-image" />
                                 </MiniEntities>
                                 <MiniEntitiesTwo>
-                                    <TitleEntities>{postList[1]?.title}</TitleEntities>
+                                    <TitleEntities>{post.title}</TitleEntities>
                                     <DescriptionEntities>{usersList[1]?.address.city} {usersList[1].address.street} {usersList[1].address.zipcode}</DescriptionEntities>
                                 </MiniEntitiesTwo>
                             </MainEntities>

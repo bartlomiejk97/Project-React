@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IState } from '../../reducers'
 import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../reducers/usersReducers';
-
+import { ISinglePhotoReducer } from '../../reducers/photoReducers';
 const Wrapper = styled.div`
     border-radius:10px;
     border:1px solid lightgrey;
@@ -133,6 +133,9 @@ export const ExpandedMenu: FC = () => {
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
+    const { photoList } = useSelector<IState, ISinglePhotoReducer>(state => ({
+        ...state.photo
+    }));
 
     
     return (
@@ -190,7 +193,7 @@ export const ExpandedMenu: FC = () => {
                     <span>Account</span>
                     <AccountItem>
                         <CustomLink to="/Profile">
-                            <UserImg src='../../media/icons/myprofile.jpg' alt="" />
+                            <UserImg src={photoList[0]?.url}alt="" />
                             <NameUser>{usersList[0].name}</NameUser>
                             <Description>See Profile</Description>
                         </CustomLink>

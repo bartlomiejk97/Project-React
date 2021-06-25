@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { IState } from '../../reducers'
 import { useSelector } from 'react-redux';
 import { IUsersReducer } from '../../reducers/usersReducers';
-
+import { ISinglePhotoReducer } from '../../reducers/photoReducers';
 
 const MainProfil = styled.div`
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);
@@ -102,13 +102,16 @@ export const LeftProfile: FC = () => {
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
+    const { photoList } = useSelector<IState, ISinglePhotoReducer>(state => ({
+        ...state.photo
+    }));
 
     
     if (usersList?.length > 0) {
         return (
             <MainProfil>
                 <Link to="/Profile">
-                    <img className="myProfileImg" src='../../media/icons/myprofile.jpg' alt="" />
+                    <img className="myProfileImg" src={photoList[0]?.url} alt="" />
                     <UserName>{usersList[0].name}</UserName>
                     <Descritions>{usersList[0].company.name}</Descritions>
                 </Link>
