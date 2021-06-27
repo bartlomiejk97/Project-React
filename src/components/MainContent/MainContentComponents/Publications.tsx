@@ -3,9 +3,14 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { IState } from '../../../reducers';
 import { IPostReducer } from '../../../reducers/postsReducers';
-import { ICommentReducer } from '../../../reducers/commentsReducers';
 import { IUsersReducer } from '../../../reducers/usersReducers';
+import { ISinglePhotoReducer } from '../../../reducers/photoReducers'
+import { Link } from 'react-router-dom';
 
+const CustomLink = styled(Link)`
+    text-decoration: none;
+    color:rgb(35,44,71);
+`;
 const PublicationsContent = styled.div`
     display:flex;
     width:100%;
@@ -90,6 +95,9 @@ const RightPublicationsBottom = styled.h1`
 
 
 export const Publications: FC = () => {
+    const { photoList } = useSelector<IState, ISinglePhotoReducer>(state => ({
+        ...state.photo
+    }));
 
     const { postList } = useSelector<IState, IPostReducer>(state => ({
         ...state.posts
@@ -104,26 +112,28 @@ export const Publications: FC = () => {
         <PhotoLeft>
             <PhotoLeftText>
                 <p className="PublicationsText">{postList[0].body}</p>
-                <p className="Descrition">10.05.2021<img className="myProfileImg" src="../../media/icons/myprofile.jpg" alt=""></img>{usersList[0].name}</p>
+                <p className="Descrition">10.05.2021<img className="myProfileImg" src={photoList[0]?.url} alt=""></img>{usersList[0].name}</p>
             </PhotoLeftText>
         </PhotoLeft>
         <RightPublications>
             <RightPublicationsContent>
                 <RightPublicationsTitle>Latest Publications</RightPublicationsTitle>
                 <RightPublicationsMini>
-                    <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>{postList[0].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[0].name}</p></p>
+                    <img src={photoList[0]?.url} alt=""></img>
+                    <p>{postList[0].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src={photoList[0]?.url} alt=""></img>{usersList[0].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsMini>
-                    <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>{postList[1].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[1].name}</p></p>
+                    <img src={photoList[1]?.url} alt=""></img>
+                    <p>{postList[1].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src={photoList[1]?.url} alt=""></img>{usersList[1].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsMini>
-                    <img src="../../../media/icons/peoplehands.jpg" alt=""></img>
-                    <p>{postList[2].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src="../../../media/icons/myprofile.jpg" alt=""></img>{usersList[2].name}</p></p>
+                    <img src={photoList[2]?.url} alt=""></img>
+                    <p>{postList[2].body}<p className="textDescription"> 10.05.2021r. <img className="imgDecription" src={photoList[2]?.url} alt=""></img>{usersList[2].name}</p></p>
                 </RightPublicationsMini>
                 <RightPublicationsBottom>
+                    <CustomLink to="/ErrorPage">
                     See more publications
+                    </CustomLink>
                 </RightPublicationsBottom>
             </RightPublicationsContent>
         </RightPublications>

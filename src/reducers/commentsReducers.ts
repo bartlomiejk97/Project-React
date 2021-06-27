@@ -10,7 +10,7 @@ const defaultState = () : ICommentReducer => ({
     commentList: [],
 });
 
-export default (state = defaultState(), action : any)=>{
+ export default (state = defaultState(), action : any)=>{
     switch(action.type){
         case actionTypes.GET_COMMENT:{
             const commentData:actionTypes.IPostTypes['GET_COMMENT'] = action;

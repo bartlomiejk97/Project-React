@@ -1,4 +1,4 @@
-import { ChangeEvent, FC} from 'react';
+import { FC} from 'react';
 import styled from 'styled-components';
 import { imgSize } from '../../styledHelpers/ImgSize';
 import { FontSize } from '../../styledHelpers/FontSize';

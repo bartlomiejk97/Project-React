@@ -35,12 +35,19 @@ export const LeftMenu: FC = () => {
     return(
         <LeftMenuu>
           <Ul>
-                <Li><img alt="Publication" src = '../../media/icons/publications.png'/>Publications </Li>
-                <Li><img alt="Ecosystem"src = '../../media/icons/ecosystem.png'/>Ecosystem </Li>
+                <Li>
+                    <Link to='/ErrorPage'>
+                        <img alt="Publication" src = '../../media/icons/publications.png'/>Publications 
+                    </Link>
+                </Li>
+                <Li>
+                    <Link to='/ErrorPage'>
+                        <img alt="Ecosystem"src = '../../media/icons/ecosystem.png'/>Ecosystem 
+                    </Link>
+                </Li>
                 <Li>
                     <Link to='/Entities'>
-                        <img alt="Entities" src = '../../media/icons/entities2.png'/> 
-                        Entities 
+                        <img alt="Entities" src = '../../media/icons/entities2.png'/>Entities 
                     </Link>
                 </Li>
           </Ul>

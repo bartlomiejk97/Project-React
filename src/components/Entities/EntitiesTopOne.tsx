@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent } from 'react';
-import { useDispatch, useStore } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Colors } from '../../styledHelpers/Colors';
 import { FontSize } from '../../styledHelpers/FontSize';

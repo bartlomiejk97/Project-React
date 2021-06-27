@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import  { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { TopBar } from '../TopBar/TopBar';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
@@ -13,7 +13,7 @@ import { getPosts } from '../../actions/postsActions';
 import { getUsers } from '../../actions/usersActions';
 import { getComments } from '../../actions/commentActions';
 import { getPhotos } from '../../actions/photoActions';
-
+import { ErrorPage } from './ErrorPage'
 type GetPosts = ReturnType<typeof getPosts>
 type GetUsers = ReturnType<typeof getUsers>
 type GetComments = ReturnType<typeof getComments>
@@ -62,6 +62,9 @@ const MainPage: FC = () => {
                         </Route>
                         <Route path="/Entities">
                             <Entities />
+                        </Route>
+                        <Route path="/ErrorPage">
+                            <ErrorPage/>
                         </Route>
                         <Route path="/">
                             <MainContent />

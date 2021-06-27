@@ -4,9 +4,16 @@ import { useSelector} from 'react-redux';
 import { ISinglePhotoReducer } from '../../reducers/photoReducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
 import { IState } from '../../reducers';
+import { Link } from 'react-router-dom';
+
+const CustomLink = styled(Link)`
+    text-decoration: none;
+    color:rgb(35,44,71);
+`;
 
 const ProfilContent = styled.div`
     width: 100%;
+    padding-bottom:10px;
 `;
 const TopNavigation = styled.div`
     padding-left: 950px;
@@ -34,18 +41,14 @@ const ProfilCenter = styled.div`
     margin-top:20px;
     display: flex;
     flex-direction: row;
+    font-size:24px;
 `;
 const ProfilContentImg = styled.div`
     width:30%;
-    height:400px;
-    border:1px solid green;
     justify-content: center;
 `;
 const ProfilForm = styled.div`
-    width:100%;
-    height:400px;
-    border:1px solid green;
-   
+    width:100%;   
 `;
 const ProfilImg = styled.div`
     width:200px;
@@ -69,7 +72,6 @@ const SeeProfil = styled.div`
 const MainForm = styled.form`
     display:flex;
     width:95%;
-    border:1px solid red;
     flex-direction: column;
     margin-top:20px;
 `;
@@ -77,7 +79,12 @@ const FormInput = styled.input`
     width:300px;
     height:30px;
     font-size:16px;
-    margin:5px 10px;
+    margin:2px 0 2px 10px;
+    &:disabled{
+        background-color: white;
+        border:none;
+        font-weight:bold;
+    }
 `;
 const FormInputSpecial = styled.input`
     width:300px;
@@ -85,38 +92,43 @@ const FormInputSpecial = styled.input`
     font-size:16px;
     margin:5px 10px;
     margin-left:700px;
+    &:disabled{
+        background-color: white;
+        border:none;
+        font-weight:bold;
+    }
 `;
-const InputSubmit = styled.input`
+const ButtonSubmit = styled.button`
     width:30px;
     height:25px;
     margin-left:1000px;
+    margin-top:10px;
+    border:none;
+    background-color:white;
+    cursor:pointer;
 `;
-
+const Border = styled.div`
+    margin:0;
+    width:100%;
+    border:1px solid lightgrey;
+`;
 export const ProfilHeader: FC = () => {
-
     const { usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
     const { photoList } = useSelector<IState, ISinglePhotoReducer>(state => ({
         ...state.photo
     }));
-  
 const user = usersList[0] || {};
-
     const [ form , setForm ] = useState<any>({
         name: user?.name,
-        street : user?.address.street,
-        city: user?.address.city,
-        company : user?.company.name,
+        street : user?.address?.street,
+        city: user?.address?.city,
+        company : user?.company?.name,
         email: user?.email,
         phone : user?.phone
     });
-
-
-
     const [isDisabled, setIsDisabled] = useState<any>("disabled");
-
-
     const updateField = (event : any ) => {
         console.log(event.currentTarget.name);
         setForm({
@@ -124,7 +136,6 @@ const user = usersList[0] || {};
             [event.target.name] : event.target.value,
         });
     }
-
     const handleSubmit = (event : any) => {
         event.preventDefault();
         console.log('my form', form);
@@ -133,19 +144,16 @@ const user = usersList[0] || {};
         setIsDisabled(isDisabled?"":"disabled");
     }
 
-
-
-    if (usersList?.length > 0) {
     return (
         < ProfilContent>
             <TopNavigation>
-                <NavigationPictures src="../../media/icons/comments.png"/>
-                <NavigationsText>Message</NavigationsText>
-                <NavigationPictures src="../../media/icons/settings.png"/>
-                <NavigationsText>Create a request</NavigationsText>
-                <NavigationPictures src="../../media/icons/user-plus.png"/>
-                <NavigationsText>Add to a cluster</NavigationsText>
-                <NavigationPictures src="../../media/icons/cancel.png"/>
+                    <NavigationPictures src="../../media/icons/comments.png"/>
+                    <NavigationsText>Message</NavigationsText>
+                    <NavigationPictures src="../../media/icons/settings.png"/>
+                    <NavigationsText>Create a request</NavigationsText>
+                    <NavigationPictures src="../../media/icons/user-plus.png"/>
+                    <NavigationsText>Add to a cluster</NavigationsText>
+                    <NavigationPictures src="../../media/icons/cancel.png"/>
             </TopNavigation>
            <ProfilCenter>
                 <ProfilContentImg>
@@ -156,7 +164,7 @@ const user = usersList[0] || {};
                 </ProfilContentImg>
                 <ProfilForm>
                     <MainForm onSubmit={handleSubmit}>
-                        <InputSubmit type='submit'value="wyślij" onClick={handleSubmitButton} ><img src="" alt="ddfd"/></InputSubmit>
+                            <ButtonSubmit type='submit' onClick={handleSubmitButton} ><img src="../../media/icons/pen.png" alt=""/></ButtonSubmit>
                         < FormInput className='inputform' name="name" disabled={isDisabled}  value={form.name} onChange={updateField}/>
                         < FormInput className='inputform' name="street" disabled={isDisabled}  value={form.street} onChange={updateField} />
                         < FormInput className='inputform'  name="city" disabled={isDisabled}  value={form.city}  onChange={updateField} />
@@ -165,16 +173,9 @@ const user = usersList[0] || {};
                         <FormInputSpecial className ='special' name="phone" disabled={isDisabled} value={form.phone} onChange={updateField}/>
                     </MainForm>
                 </ProfilForm>
-               
+            
            </ProfilCenter>
-
+           <Border></Border>
         </ProfilContent>
-    )}else {
-        return (
-            <>
-            <ProfilCenter></ProfilCenter>
-            </>
-        ) 
-    }
-
+    )
   };

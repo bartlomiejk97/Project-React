@@ -209,12 +209,12 @@ export const WorkSpaceLast: FC = () => {
             </LastUpadates>
             <LastButtonContainer>
                 <ButtonSmall>All</ButtonSmall>
-                <ButtonAverage><img src="./media/icons/entities2.png" />SAS</ButtonAverage>
-                <ButtonAverage><img src="./media/icons/entities2.png" />SAS</ButtonAverage>
-                <ButtonBig><img src="./media/icons/entities2.png" />Secondary business</ButtonBig>
-                <ButtonBig><img src="./media/icons/community.png" />Commuticies</ButtonBig>
-                <ButtonAverage><img src="./media/icons/notebook.png" />POA</ButtonAverage>
-                <ButtonAverage><img src="./media/icons/publications.png" />Survey</ButtonAverage>
+                <ButtonAverage><img src="./media/icons/entities2.png" alt=""/>SAS</ButtonAverage>
+                <ButtonAverage><img src="./media/icons/entities2.png" alt="" />SAS</ButtonAverage>
+                <ButtonBig><img src="./media/icons/entities2.png" alt=""/>Secondary business</ButtonBig>
+                <ButtonBig><img src="./media/icons/community.png" alt=""/>Commuticies</ButtonBig>
+                <ButtonAverage><img src="./media/icons/notebook.png"alt="" />POA</ButtonAverage>
+                <ButtonAverage><img src="./media/icons/publications.png"alt="" />Survey</ButtonAverage>
                 <ButtonSmall>...</ButtonSmall>
             </LastButtonContainer>
             <LastUpdatesContainer>

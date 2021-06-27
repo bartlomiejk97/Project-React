@@ -1,8 +1,9 @@
 import { FC  } from 'react';
 import styled from 'styled-components';
 import {ProfilHeader } from '../../components/Profile/ProfileHead';
-
-const ProfileContent = styled.div`
+import { ProfileContent } from '../Profile/ProfileContent';
+import { ProfileBottom } from './ProfileBottom';
+const ProfileContentAll = styled.div`
     width:70%;
     margin-left:150px;
     display:inline-block;
@@ -13,8 +14,10 @@ const ProfileContent = styled.div`
 
 export const Profile: FC = () => {
     return(
-        <ProfileContent>
-            <ProfilHeader></ProfilHeader>
-        </ProfileContent>
+        <ProfileContentAll>
+            <ProfilHeader/>
+            <ProfileContent/>
+            <ProfileBottom/>
+        </ProfileContentAll>
         
     )};

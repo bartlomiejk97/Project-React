@@ -157,10 +157,15 @@ export const ExpandedMenu: FC = () => {
                             </CustomLink>
                         }
                         {'Publications'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
+                            <CustomLink to="/ErrorPage">
                             <Li><CustomImg alt="Publications" src='../../media/icons/publications.png' /> Publications</Li>
+                            </CustomLink>
                         }
                         {'People'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="People" src='../../media/icons/people.png' /> People</Li>
+                            <CustomLink to="/ErrorPage">
+                                <Li><CustomImg alt="People" src='../../media/icons/people.png' /> People</Li>
+                            </CustomLink>
+                            
                         }
                         {'Entities'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
                             <CustomLink to="/Entities">
@@ -169,23 +174,39 @@ export const ExpandedMenu: FC = () => {
 
                         }
                         {'Administration'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Administration" src='../../media/icons/administration.png' /> Administration</Li>
+                            <CustomLink to="/ErrorPage">
+                                <Li><CustomImg alt="Administration" src='../../media/icons/administration.png' /> Administration</Li>
+                            </CustomLink>
+                            
                         }
                         <H1>Workspaces</H1>
                         {'Client Contract'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Client contract" src='../../media/icons/network.png' /> Client contract</Li>
+                            <CustomLink to="/ErrorPage">
+                                <Li><CustomImg alt="Client contract" src='../../media/icons/network.png' /> Client contract</Li>
+                            </CustomLink>
+                            
                         }
                         {'Supplier contract'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Supplier contract" src='../../media/icons/network.png' /> Supplier contract</Li>
+                            <CustomLink to="/ErrorPage">
+                                <Li><CustomImg alt="Supplier contract" src='../../media/icons/network.png' /> Supplier contract</Li>
+                            </CustomLink>
                         }
                         {'Corporate'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Corporate" src='../../media/icons/entities2.png' /> Corporate</Li>
+                            <CustomLink to="/ErrorPage">
+                                    <Li><CustomImg alt="Corporate" src='../../media/icons/entities2.png' /> Corporate</Li>
+                            </CustomLink>
+                            
                         }
                         {'Group Norms'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Group" src='../../media/icons/network.png' /> Group Norms</Li>
+                            <CustomLink to="/ErrorPage">
+                                    <Li><CustomImg alt="Group" src='../../media/icons/network.png' /> Group Norms</Li>
+                            </CustomLink>
+                            
                         }
                         {'Group Norms'.toLocaleLowerCase().includes(inputText.toLocaleLowerCase()) &&
-                            <Li><CustomImg alt="Supplier contract" src='../../media/icons/network.png' /> Real estate contracts </Li>
+                            <CustomLink to="/ErrorPage">
+                                 <Li><CustomImg alt="Supplier contract" src='../../media/icons/network.png' /> Real estate contracts </Li>
+                            </CustomLink>
                         }
                     </Scroll>
                 </Ul>
@@ -197,8 +218,11 @@ export const ExpandedMenu: FC = () => {
                             <NameUser>{usersList[0].name}</NameUser>
                             <Description>See Profile</Description>
                         </CustomLink>
-                        <CustomImg alt="Privacy" src='../../media/icons/privacy.png' /> Privacy<br></br>
-                        <CustomImg alt="Settings" src='../../media/icons/settings.png' /> Settings
+                        <CustomLink to="/ErrorPage">
+                            <CustomImg alt="Privacy" src='../../media/icons/privacy.png' /> Privacy<br></br>
+                            <CustomImg alt="Settings" src='../../media/icons/settings.png' /> Settings
+                        </CustomLink>
+                       
                     </AccountItem>
                     <LogOutButton>
                         <CustomImg src='./media/icons/logout.png' alt=""></CustomImg><span>Logout</span>
